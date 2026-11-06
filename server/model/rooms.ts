@@ -6,6 +6,21 @@ export function normalizeCwd(cwd: string): string {
   return p.length > 1 ? p.replace(/\/+$/, '') : p;
 }
 
+/**
+ * CGSERVER (27/10): HABBLAUD_ROOM_MERGE="prefixo=destino;..." junta numa sala só os cwd sob o prefixo
+ * (ex.: o Codex do celular abre cada conversa numa pasta nova em ~/Documents/Codex/<data>-<assunto>).
+ */
+const ROOM_MERGE = (process.env.HABBLAUD_ROOM_MERGE ?? '')
+  .split(';')
+  .map((r) => r.split('=').map((x) => normalizeCwd(x)))
+  .filter((r): r is [string, string] => r.length === 2 && !!r[0] && !!r[1]);
+
+export function roomOf(cwd: string): string {
+  const p = normalizeCwd(cwd);
+  for (const [prefix, dest] of ROOM_MERGE) if (p === prefix || p.startsWith(prefix + '/')) return dest;
+  return p;
+}
+
 function segments(path: string): string[] {
   return path.split(/[\\/]+/).filter(Boolean);
 }

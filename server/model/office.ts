@@ -30,7 +30,7 @@ import { describeGitHubEvent, githubEventKey, RoomEffects, type GitHubEvent } fr
 import { hash32 } from '../../shared/hash';
 import { applyPermission } from '../permissions/registry';
 import type { NameStore, StoredCharacter } from './names';
-import { normalizeCwd, roomDisplayNames, SlotAllocator } from './rooms';
+import { roomOf, roomDisplayNames, SlotAllocator } from './rooms';
 import { tr } from '../../shared/i18n';
 import type { WorldMeta } from '../../shared/world/api';
 
@@ -322,7 +322,7 @@ export class Office {
       this.setStatus(p.id, p.status, p.waitingFor);
       return;
     }
-    const roomId = normalizeCwd(p.cwd);
+    const roomId = roomOf(p.cwd);
     this.ensureRoom(roomId, now);
     const chosen = this.roomCharacter(roomId, p.id, p.sessionId);
     // A mesma sessão retomada noutro processo (ex.: "Assumir aqui") mantém o nome, mesmo com o processo antigo
