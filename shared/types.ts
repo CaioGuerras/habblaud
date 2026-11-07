@@ -141,6 +141,8 @@ export interface AgentInfo {
   roomId: string;
   /** Nome humano único no escritório. Ex.: "Marina". */
   name: string;
+  /** Placa local da mesa (não entra na projeção do World). */
+  deskLabel?: string;
   /** Dica de apresentação do nome (usada pela arte para variar o visual). */
   look: 'f' | 'm';
   /** Papel. Principal: "Agente principal". Sub: tipo do subagente ("Explore", "Plan", "fork"...). */

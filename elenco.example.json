@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Jarvis",
+    "account": ".claude",
+    "look": "m",
+    "parts": {
+      "topStyle": "shirt_tie",
+      "top": "#45404f",
+      "accessory": "glasses"
+    }
+  },
+  {
+    "name": "Visão",
+    "account": ".claude-visao",
+    "look": "m",
+    "parts": {
+      "topStyle": "sweater",
+      "top": "#235347",
+      "accessory": "none"
+    }
+  },
+  {
+    "name": "Visão Branco",
+    "account": ".claude-branco",
+    "look": "m",
+    "parts": {
+      "topStyle": "shirt_tie",
+      "top": "#e2dde7",
+      "accessory": "none"
+    }
+  },
+  {
+    "name": "Jocasta",
+    "account": ".codex",
+    "look": "f",
+    "parts": {
+      "topStyle": "jacket",
+      "top": "#c7bbd4",
+      "accessory": "headphones"
+    }
+  },
+  {
+    "name": "Ultron",
+    "account": ".codex-ultron",
+    "look": "m",
+    "parts": {
+      "topStyle": "hoodie",
+      "top": "#45404f",
+      "accessory": "headphones"
+    }
+  },
+  {
+    "name": "Stark",
+    "account": ".gemini-stark",
+    "look": "m",
+    "parts": {
+      "topStyle": "jacket",
+      "top": "#235347",
+      "accessory": "glasses"
+    }
+  },
+  {
+    "name": "Banner",
+    "account": ".gemini-banner",
+    "look": "m",
+    "parts": {
+      "topStyle": "polo",
+      "top": "#8eb69b",
+      "accessory": "none"
+    }
+  },
+  {
+    "name": "Shuri",
+    "account": ".gemini-shuri",
+    "look": "f",
+    "parts": {
+      "topStyle": "blouse",
+      "top": "#c7bbd4",
+      "accessory": "earrings"
+    }
+  }
+]

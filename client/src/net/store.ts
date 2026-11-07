@@ -1,3 +1,4 @@
+import { decorateElenco, type ElencoEntry } from '../../../shared/elenco';
 // Estado do escritório no navegador: recebe snapshots/feed/avisos do servidor via SSE
 // (ou do simulador local quando a URL tem ?mock=1) e notifica os assinantes.
 // Fonte alternativa (o timelapse, ui/timelapse.ts): pushReplay() publica snapshots reconstruídos e o
@@ -383,7 +384,17 @@ export class OfficeStore {
     this.checkBuild(snap.meta.build);
   }
 
+  private elenco: ElencoEntry[] = [];
+  private undecorated: OfficeSnapshot | null = null;
+
+  setElenco(entries: ElencoEntry[]): void {
+    this.elenco = entries;
+    if (this.undecorated && !this.replay) this.setSnapshot(this.undecorated);
+  }
+
   private setSnapshot(snap: OfficeSnapshot): void {
+    this.undecorated = snap;
+    if (!this.mock && !this.replay) snap = decorateElenco(snap, this.elenco);
     this.snapshot = snap;
     this.agentIndex = new Map(snap.agents.map((a) => [a.id, a]));
     this.roomIndex = new Map(snap.rooms.map((r) => [r.id, r]));

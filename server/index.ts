@@ -1,3 +1,6 @@
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createPanelHandler, createPanelReader } from './painel';
 // Servidor do Habblaud: observa as sessões abertas do Claude Code (todas as contas),
 // mantém o modelo do escritório e transmite via SSE. Sem dependências de runtime.
 //   npm run dev    -> tsx server/index.ts --dev (Vite em middleware mode, HMR no mesmo servidor)
@@ -61,6 +64,7 @@ import { WorldViewer } from './world/viewer';
 
 const config = loadConfig();
 const startedAt = Date.now();
+const buildOutput = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 // Nome antigo (CodeTown, até a 0.3.2): leva ~/.codetown para ~/.habblaud antes de ler qualquer estado e avisa
 // das variáveis CODETOWN_* que não valem mais. No Docker, quem migra é o docker:up.
@@ -118,7 +122,7 @@ const office = new Office({
   roomAlias: (path) => roomAliases.get(path),
   version: config.version,
   // No modo dev o Vite serve o cliente direto do código-fonte: não há build para comparar.
-  build: config.dev ? undefined : createBuildReader(config.rootDir),
+  build: config.dev ? undefined : createBuildReader(config.rootDir, buildOutput),
   startedAt,
   accounts: (sessions) => accounts.list(sessions),
   sources: () => late.agents?.sources() ?? [],
@@ -159,7 +163,7 @@ const worldUplink =
         url: worldSocketUrl(config.world.url),
         version: config.version,
         build: () => {
-          const b = readBuildInfo(config.rootDir);
+          const b = readBuildInfo(config.rootDir, buildOutput);
           return { commit: b.commit, dirty: b.dirty };
         },
         locale: () => getLocale() as WorldLocale,
@@ -402,17 +406,20 @@ if (config.dev) {
   closeVite = () => vite.close();
   fallback = (req, res) => vite.middlewares(req, res);
 } else {
-  const serveStatic = createStaticHandler(join(config.rootDir, 'dist', 'client'));
+  const serveStatic = createStaticHandler(join(buildOutput, 'client'));
   fallback = (req, res, url) => serveStatic(req, res, url.pathname);
 }
 
 // Host/Origin/Content-Type: barra DNS rebinding e CSRF antes de qualquer rota (inclusive o Vite).
+const panel = createPanelHandler(createPanelReader(config.home, config.dataDir));
 const guard = createRequestGuard({ allowedHosts: config.allowedHosts });
 
 server.on('request', (req, res) => {
   const url = parseUrl(req);
   try {
     if (guard(req, res)) return;
+    if (url.pathname === '/api/painel' && isRemoteRequest(req)) { sendJson(res, 403, { error: tr('Painel disponível apenas no acesso local.') }); return; }
+    if (panel(req, res, url)) return;
     if (!api(req, res, url)) fallback(req, res, url);
   } catch (err) {
     log.warn(tr('Erro ao responder {0} {1}: {2}', [req.method, url.pathname, errMsg(err)]));
@@ -447,7 +454,9 @@ if (config.remote) {
       try {
         if (guard(req, res)) return;
         if (gate(req, res, url)) return;
-        if (!api(req, res, url)) fallback(req, res, url);
+        if (url.pathname === '/api/painel' && isRemoteRequest(req)) { sendJson(res, 403, { error: tr('Painel disponível apenas no acesso local.') }); return; }
+    if (panel(req, res, url)) return;
+    if (!api(req, res, url)) fallback(req, res, url);
       } catch (err) {
         log.warn(tr('Erro ao responder (remoto) {0} {1}: {2}', [req.method, url.pathname, errMsg(err)]));
         if (!res.headersSent) sendJson(res, 500, { error: tr('erro interno') });

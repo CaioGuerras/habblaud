@@ -6,6 +6,7 @@ import { SoundControl } from './sound';
 import { dayLabel, hourTicks, TimelapsePlayer } from './timelapse';
 
 // Só o contexto e o player reais: os outros painéis não participam do relógio.
+vi.mock('./painel');
 vi.mock('./daystats-launcher');
 vi.mock('./roomrename');
 vi.mock('./drawer');

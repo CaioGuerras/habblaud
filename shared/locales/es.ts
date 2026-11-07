@@ -2,6 +2,37 @@
 // As lacunas {0}, {1}... (e as nomeadas, como {sala}) precisam aparecer na tradução, em qualquer ordem.
 // Chave ausente = o texto fica em PT. `npm run i18n:check` lista os textos sem tradução e as chaves que sobraram.
 export const ES: Readonly<Record<string, string>> = {
+  // CGSERVER — Painel e paleta Heisuca
+  "Painel": "Panel",
+  "O escritório em um olhar. Somente leitura.": "La oficina de un vistazo. Solo lectura.",
+  "Voltar ao escritório": "Volver a la oficina",
+  "Verde claro": "Verde claro",
+  "Cinza-lilás": "Gris lila",
+  "Nenhum registro disponível.": "No hay registros disponibles.",
+  "Elenco": "Elenco",
+  "Elenco ainda não configurado.": "El elenco aún no está configurado.",
+  "Configuração do elenco inválida.": "Configuración del elenco no válida.",
+  "Sessão vinculada": "Sesión vinculada",
+  "Sem sessão vinculada": "Sin sesión vinculada",
+  "Presente": "Presente",
+  "Ausente": "Ausente",
+  "Sessões no escritório": "Sesiones en la oficina",
+  "Processos de IA visíveis": "Procesos de IA",
+  "Threads visíveis no /proc": "Hilos del usuario",
+  "Handoffs recentes": "Traspasos recientes",
+  "Tarefas do Codex": "Tareas de Codex",
+  "Diário do gerente": "Diario del gerente",
+  "Saldo do cgmind": "Saldo de cgmind",
+  "Consulta adiada para evitar custo ou acesso externo.": "Consulta aplazada para evitar costes o acceso externo.",
+  "Atualizado em {0}": "Actualizado el {0}",
+  "Algumas fontes estão indisponíveis.": "Algunas fuentes no están disponibles.",
+  "Painel indisponível. Tentando novamente em instantes.": "Panel no disponible. Se reintentará en unos instantes.",
+  "Prévia omitida por segurança.": "Vista previa omitida por seguridad.",
+  "Somente leitura.": "Solo lectura.",
+  "O Painel não aceita parâmetros.": "El panel no acepta parámetros.",
+  "Painel indisponível.": "Panel no disponible.",
+  "Painel disponível apenas no acesso local.": "Panel disponible solo mediante acceso local.",
+
   // client/src/main.ts
   "Escritório virtual em pixel art que mostra, em tempo real, o que seus agentes do Claude Code estão fazendo.": "Oficina virtual en pixel art que muestra, en tiempo real, lo que están haciendo tus agentes de Claude Code.",
 

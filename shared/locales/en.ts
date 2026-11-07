@@ -2,6 +2,37 @@
 // As lacunas {0}, {1}... (e as nomeadas, como {sala}) precisam aparecer na tradução, em qualquer ordem.
 // Chave ausente = o texto fica em PT. `npm run i18n:check` lista os textos sem tradução e as chaves que sobraram.
 export const EN: Readonly<Record<string, string>> = {
+  // CGSERVER — Painel e paleta Heisuca
+  "Painel": "Dashboard",
+  "O escritório em um olhar. Somente leitura.": "The office at a glance. Read only.",
+  "Voltar ao escritório": "Back to the office",
+  "Verde claro": "Light green",
+  "Cinza-lilás": "Lilac gray",
+  "Nenhum registro disponível.": "No records available.",
+  "Elenco": "Cast",
+  "Elenco ainda não configurado.": "Cast has not been configured yet.",
+  "Configuração do elenco inválida.": "Invalid cast configuration.",
+  "Sessão vinculada": "Linked session",
+  "Sem sessão vinculada": "No linked session",
+  "Presente": "Present",
+  "Ausente": "Absent",
+  "Sessões no escritório": "Office sessions",
+  "Processos de IA visíveis": "AI processes",
+  "Threads visíveis no /proc": "User threads",
+  "Handoffs recentes": "Recent handoffs",
+  "Tarefas do Codex": "Codex tasks",
+  "Diário do gerente": "Manager journal",
+  "Saldo do cgmind": "cgmind balance",
+  "Consulta adiada para evitar custo ou acesso externo.": "Query deferred to avoid cost or external access.",
+  "Atualizado em {0}": "Updated at {0}",
+  "Algumas fontes estão indisponíveis.": "Some sources are unavailable.",
+  "Painel indisponível. Tentando novamente em instantes.": "Dashboard unavailable. Retrying shortly.",
+  "Prévia omitida por segurança.": "Preview omitted for security.",
+  "Somente leitura.": "Read only.",
+  "O Painel não aceita parâmetros.": "The dashboard does not accept parameters.",
+  "Painel indisponível.": "Dashboard unavailable.",
+  "Painel disponível apenas no acesso local.": "Dashboard available only through local access.",
+
   // client/src/main.ts
   "Escritório virtual em pixel art que mostra, em tempo real, o que seus agentes do Claude Code estão fazendo.": "Pixel-art virtual office that shows, in real time, what your Claude Code agents are doing.",
 

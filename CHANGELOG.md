@@ -10,6 +10,12 @@ do meio (0.**3**.0).
 
 ## [Não lançado]
 
+### Adicionado
+
+- Personalização local do CGSERVER: paleta Heisuca cinza-lilás e verde claro; elenco por `~/.habblaud/elenco.json`, avatares e placas das mesas vinculados a sessões reais.
+- Painel somente leitura com cartões do elenco, processos/threads locais, handoffs recentes, tarefas do Codex e diário do gerente. Leitura limitada a fontes fixas, prévias curtas com filtro de credenciais, sem comandos ou acesso externo. Build de teste isolada em `dist-teste/`.
+
+
 ## [1.0.3] - 2026-10-16
 
 ### Corrigido

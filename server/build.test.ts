@@ -73,3 +73,17 @@ describe('readBuildInfo e scripts/build-info.mjs', () => {
     expect(run(root, { HABBLAUD_BUILD_COMMIT: 'não-é-sha' })).toMatchObject({ commit: 'unknown', dirty: false });
   });
 });
+
+it('identifica a build isolada sem consultar dist da produção', () => {
+  const root = mkdtempSync(join(tmpdir(), 'habblaud-build-isolada-'));
+  dirs.push(root);
+  for (const [directory, id] of [['dist', 'PROD'], ['dist-teste', 'TEST']]) {
+    mkdirSync(join(root, directory, 'client'), { recursive: true });
+    writeFileSync(join(root, directory, 'client/index.html'), `<script src="/bundle/main-${id}.js"></script>`);
+    writeFileSync(join(root, directory, 'build.json'), JSON.stringify({ commit: 'unknown', dirty: directory === 'dist-teste' }));
+  }
+  expect(createBuildReader(root, join(root, 'dist-teste'))()).toBe('main-TEST');
+  expect(readBuildInfo(root, join(root, 'dist-teste')).dirty).toBe(true);
+  expect(createBuildReader(root)()).toBe('main-PROD');
+  expect(readBuildInfo(root).dirty).toBe(false);
+});

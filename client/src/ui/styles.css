@@ -4,18 +4,18 @@
    Identidade: detalhes "em pixel" (pontos de status quadrados, barras segmentadas de uso, ícones em pixels). */
 
 .ui-root {
-  --ui-bg: rgba(18, 21, 29, 0.85);
-  --ui-bg-solid: rgba(20, 24, 33, 0.97);
+  --ui-bg: #17151c;
+  --ui-bg-solid: #292531;
   --ui-bg-soft: rgba(255, 255, 255, 0.035);
   --ui-bg-hover: rgba(255, 255, 255, 0.06);
   --ui-line: rgba(160, 176, 210, 0.13);
   --ui-line-strong: rgba(160, 176, 210, 0.24);
-  --ui-text: #e8ecf5;
-  --ui-muted: #9aa4b8;
+  --ui-text: #e2dde7;
+  --ui-muted: #aaa2b3;
   /* 5,4:1 sobre o painel (#161a23) e 4,8:1 sobre linhas em destaque: AA para texto pequeno. */
-  --ui-faint: #8790a6;
-  --ui-accent: #7cc8ff;
-  --ui-accent-soft: rgba(124, 200, 255, 0.13);
+  --ui-faint: #aaa2b3;
+  --ui-accent: #c7bbd4;
+  --ui-accent-soft: rgba(199, 187, 212, 0.13);
 
   --st-working: #4fd18b;
   --st-waiting: #ffb547;
@@ -10886,7 +10886,7 @@ html.is-replay #world {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #8790a6;
+  background: #aaa2b3;
 }
 
 .ui-visit-agent.is-working .ui-visit-agent__dot,
@@ -10996,7 +10996,7 @@ html.is-replay #world {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #8790a6;
+  background: #aaa2b3;
 }
 
 /* "Sair pelo elevador (E)" sobre o visitante */

@@ -2,6 +2,37 @@
 // As lacunas {0}, {1}... (e as nomeadas, como {sala}) precisam aparecer na tradução, em qualquer ordem.
 // Chave ausente = o texto fica em PT. `npm run i18n:check` lista os textos sem tradução e as chaves que sobraram.
 export const FR: Readonly<Record<string, string>> = {
+  // CGSERVER — Painel e paleta Heisuca
+  "Painel": "Tableau de bord",
+  "O escritório em um olhar. Somente leitura.": "Le bureau en un coup d’œil. Lecture seule.",
+  "Voltar ao escritório": "Retour au bureau",
+  "Verde claro": "Vert clair",
+  "Cinza-lilás": "Gris lilas",
+  "Nenhum registro disponível.": "Aucun enregistrement disponible.",
+  "Elenco": "Équipe",
+  "Elenco ainda não configurado.": "L’équipe n’est pas encore configurée.",
+  "Configuração do elenco inválida.": "Configuration de l’équipe invalide.",
+  "Sessão vinculada": "Session associée",
+  "Sem sessão vinculada": "Aucune session associée",
+  "Presente": "Présent",
+  "Ausente": "Absent",
+  "Sessões no escritório": "Sessions du bureau",
+  "Processos de IA visíveis": "Processus d’IA",
+  "Threads visíveis no /proc": "Threads de l’utilisateur",
+  "Handoffs recentes": "Transmissions récentes",
+  "Tarefas do Codex": "Tâches Codex",
+  "Diário do gerente": "Journal du gestionnaire",
+  "Saldo do cgmind": "Solde cgmind",
+  "Consulta adiada para evitar custo ou acesso externo.": "Consultation différée pour éviter des frais ou un accès externe.",
+  "Atualizado em {0}": "Mis à jour le {0}",
+  "Algumas fontes estão indisponíveis.": "Certaines sources sont indisponibles.",
+  "Painel indisponível. Tentando novamente em instantes.": "Tableau de bord indisponible. Nouvelle tentative sous peu.",
+  "Prévia omitida por segurança.": "Aperçu masqué par sécurité.",
+  "Somente leitura.": "Lecture seule.",
+  "O Painel não aceita parâmetros.": "Le tableau de bord n’accepte pas de paramètres.",
+  "Painel indisponível.": "Tableau de bord indisponible.",
+  "Painel disponível apenas no acesso local.": "Tableau de bord disponible uniquement en accès local.",
+
   // client/src/main.ts
   "Escritório virtual em pixel art que mostra, em tempo real, o que seus agentes do Claude Code estão fazendo.": "Bureau virtuel en pixel art qui montre, en temps réel, ce que font vos agents Claude Code.",
 

@@ -1,3 +1,4 @@
+import { HEISUCA } from '../../art/heisuca';
 // Desenho do mundo por frame: camada externa -> pisos -> paredes/itens de parede -> entidades
 // ordenadas por profundidade -> luz/escuridão -> ícones. A passada em espaço de tela (texto
 // nítido) fica em overlay.ts.
@@ -780,6 +781,21 @@ export class Renderer {
         const r = s.rects.screen;
         const mode = this.deskScreen(f, area);
         this.safe(() => this.art.drawScreen(ctx, { x: dx + r.x, y: dy + r.y, w: r.w, h: r.h }, mode, now, f.seed));
+        const owner = f.seatSpot ? this.sim.spots.ownerOf(f.seatSpot) : undefined;
+        const ch = owner ? this.sim.chars.get(owner) : undefined;
+        const label = ch && !ch.leaving ? ch.info.deskLabel || ch.info.title?.slice(0, 32) : undefined;
+        if (label) {
+          ctx.save();
+          ctx.font = '5px monospace';
+          const text = label.length > 20 ? label.slice(0, 19) + '…' : label;
+          const width = Math.min(70, ctx.measureText(text).width + 6);
+          ctx.fillStyle = HEISUCA.shikkoku.background;
+          ctx.fillRect(f.ax - width / 2, f.ay - 5, width, 8);
+          ctx.fillStyle = HEISUCA.shikkoku.text;
+          ctx.textAlign = 'center';
+          ctx.fillText(text, f.ax, f.ay + 1, width - 4);
+          ctx.restore();
+        }
       } else if (f.kind === 'coffee_machine' && state === 1) {
         this.drawSteam(f.ax, dy + 2, now, f.seed);
       } else if (f.kind === 'arcade' && s.rects?.screen) {
